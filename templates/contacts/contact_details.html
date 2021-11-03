@@ -12,7 +12,7 @@
       <div>
         {{ contact.address_1 }}<br />
         {% if contact.address_2 %}
-          {{ contact.address_2 }}<br />
+        {{ contact.address_2 }}<br />
         {% endif %}
         {{ contact.city }}, {{ contact.state }} {{ contact.zip_code }}
       </div>
@@ -39,17 +39,29 @@
     </div>
     {% endif %}
 
-    {% if Note.text %}
+    {% for note in notes %}
+    {% if note.text %}
     <div class="flex">
       <div class="pr2"></div>
-      <div>{{ Note.text }}</div>
+      <div>{{ note.text }}</div>
     </div>
     {% endif %}
+    {% endfor %}
+
+    <!-- <div>
+      <form action="{% url 'contact_details' pk=contact.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+          <button type="submit">Add Note</button>
+        </div>
+      </form>
+    </div> -->
 
     <p>
-      <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>    
+      <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>
       <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a>
     </p>
   </div>
-</div>  
+</div>
 {% endblock %}
