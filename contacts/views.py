@@ -81,9 +81,9 @@ def contact_details(request, pk):
             return redirect(to='contact_details', pk=pk)
     return render(request, "contacts/contact_details.html", {"form": form, "notes": notes, "contact": contact})
 
-def notes(request, pk):
+def contact_notes(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     notes = Note.objects.filter(contact_id=pk)
-    return render(request, "contacts/notes.html", {
+    return render(request, "contacts/contact_notes.html", {
         "contact": contact, "notes": notes
     })
