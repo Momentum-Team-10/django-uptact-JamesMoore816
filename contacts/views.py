@@ -54,14 +54,15 @@ def contact_details(request, pk):
         "contact": contact, "notes": notes
     })
 
-# def add_note(request, pk):
-#     contact = get_object_or_404(Contact, pk=pk)
-#     if request.method == 'GET':
-#         form = NoteForm
-#     else:
-#         form = NoteForm(data=request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect(to='list_contacts.html')
+def add_note(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if request.method == 'GET':
+        form = NoteForm()
+    else:
+        form = NoteForm(data=request.POST)
+        if form.is_valid():
+            form.instance.contact_id = pk
+            form.save()
+            return redirect(to='contact_details', pk=pk)
 
-#     return render(request, "contacts/contact_details.html", {"form": form})
+    return render(request, "contacts/add_note.html", {"form": form, "contact": contact})

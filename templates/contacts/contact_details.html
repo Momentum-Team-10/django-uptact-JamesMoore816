@@ -48,16 +48,6 @@
     {% endif %}
     {% endfor %}
 
-    <!-- <div>
-      <form action="{% url 'contact_details' pk=contact.pk %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div>
-          <button type="submit">Add Note</button>
-        </div>
-      </form>
-    </div> -->
-
     <p>
       <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>
       <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a>
