@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Notes for {{ contact.name }}</h1>
+
+{% for note in notes %}
+    {% if note.text %}
+    <div class="flex">
+      <div class="pr2"></div>
+      <div>{{ note.text }}</div>
+    </div>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

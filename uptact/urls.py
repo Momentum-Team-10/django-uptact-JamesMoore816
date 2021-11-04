@@ -31,9 +31,9 @@ urlpatterns = [
     path('contacts/<int:pk>/',
          contacts_views.contact_details,
          name='contact_details'),
-    # path('contacts/<int:pk>/notes/',
-    #     contacts_views.add_note,
-    #     name='add_note'),
+    path('contacts/<int:pk>/notes/',
+        contacts_views.notes,
+        name='notes'),
 ]
 
 if settings.DEBUG:
