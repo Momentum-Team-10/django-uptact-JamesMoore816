@@ -23,3 +23,5 @@ class NoteForm(forms.ModelForm):
         fields = [
             'text',
             ]
+        labels = { "text": "Add Note:"
+        }

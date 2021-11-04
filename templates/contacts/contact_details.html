@@ -47,13 +47,13 @@
     </div>
     {% endif %}
     {% endfor %}
-<!-- The below div part is new -->
+
     <div>
       <form action="{% url 'contact_details' pk=contact.pk %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <div>
-          <button type="submit">Add Note</button>
+          <button type="submit">Submit Note</button>
         </div>
       </form>
     </div>
