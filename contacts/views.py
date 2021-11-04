@@ -47,22 +47,36 @@ def delete_contact(request, pk):
     return render(request, "contacts/delete_contact.html",
                   {"contact": contact})
 
+# def contact_details(request, pk):
+#     contact = get_object_or_404(Contact, pk=pk)
+#     notes = Note.objects.filter(contact_id=pk)
+#     return render(request, "contacts/contact_details.html", {
+#         "contact": contact, "notes": notes
+#     })
+
+# def add_note(request, pk):
+#     contact = get_object_or_404(Contact, pk=pk)
+#     if request.method == 'GET':
+#         form = NoteForm()
+#     else:
+#         form = NoteForm(data=request.POST)
+#         if form.is_valid():
+#             form.instance.contact_id = pk
+#             form.save()
+#             return redirect(to='contact_details', pk=pk)
+
+#     return render(request, "contacts/add_note.html", {"form": form, "contact": contact})
+
+# The below is the original contact_details and add_note views combined
 def contact_details(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     notes = Note.objects.filter(contact_id=pk)
-    return render(request, "contacts/contact_details.html", {
-        "contact": contact, "notes": notes
-    })
-
-def add_note(request, pk):
-    contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'GET':
-        form = NoteForm()
+        form = NoteForm(instance=contact)
     else:
         form = NoteForm(data=request.POST)
         if form.is_valid():
             form.instance.contact_id = pk
             form.save()
             return redirect(to='contact_details', pk=pk)
-
-    return render(request, "contacts/add_note.html", {"form": form, "contact": contact})
+    return render(request, "contacts/contact_details.html", {"form": form, "notes": notes, "contact": contact})
